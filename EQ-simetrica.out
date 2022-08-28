@@ -1,0 +1,188 @@
+----- Otter 3.3f, August 2004 -----
+The process was started by jalonso on lulio,
+Sun Aug 28 15:46:20 2022
+The command was "otter".  The process ID is 31522.
+
+include("Definiciones.in").
+------- start included file Definiciones.in-------
+
+formula_list(usable).
+all x y (PO(x,y)<-> (exists z (z<=x&z<=y))& (exists z (z<=x& -(z<=y)))& (exists z (-(z<=x)&z<=y))).
+all x y (DR(x,y)<-> -(exists z (z<=x&z<=y))).
+all x y (EQ(x,y)<->x=y).
+all x y (PP(x,y)<-> (all z (z<=x->z<=y))& (exists z (-(z<=x)&z<=y))).
+all x y (PPi(x,y)<->PP(y,x)).
+end_of_list.
+
+-------> usable clausifies to:
+
+list(usable).
+1 [] -PO(x,y)|$f1(x,y)<=x.
+2 [] -PO(x,y)|$f1(x,y)<=y.
+3 [] -PO(x,y)|$f2(x,y)<=x.
+4 [] -PO(x,y)| -($f2(x,y)<=y).
+5 [] -PO(x,y)| -($f3(x,y)<=x).
+6 [] -PO(x,y)|$f3(x,y)<=y.
+7 [] PO(x,y)| -(z<=x)| -(z<=y)| -(x1<=x)|x1<=y|x2<=x| -(x2<=y).
+8 [] -DR(x,y)| -(z<=x)| -(z<=y).
+9 [] DR(x,y)|$f4(x,y)<=x.
+10 [] DR(x,y)|$f4(x,y)<=y.
+11 [] -EQ(x,y)|x=y.
+12 [] EQ(x,y)|x!=y.
+13 [] -PP(x,y)| -(z<=x)|z<=y.
+14 [] -PP(x,y)| -($f5(x,y)<=x).
+15 [] -PP(x,y)|$f5(x,y)<=y.
+16 [] PP(x,y)|$f6(x,y)<=x|x3<=x| -(x3<=y).
+17 [] PP(x,y)| -($f6(x,y)<=y)|x3<=x| -(x3<=y).
+18 [] -PPi(x,y)|PP(y,x).
+19 [] PPi(x,y)| -PP(y,x).
+end_of_list.
+
+formula_list(usable).
+all x (x<=x).
+all x y (x<=y&y<=x->x=y).
+all x y z (x<=y&y<=z->x<=z).
+end_of_list.
+
+-------> usable clausifies to:
+
+list(usable).
+20 [] x<=x.
+21 [] -(x<=y)| -(y<=x)|x=y.
+22 [] -(x<=y)| -(y<=z)|x<=z.
+end_of_list.
+------- end included file Definiciones.in-------
+set(auto).
+   dependent: set(auto1).
+   dependent: set(process_input).
+   dependent: clear(print_kept).
+   dependent: clear(print_new_demod).
+   dependent: clear(print_back_demod).
+   dependent: clear(print_back_sub).
+   dependent: set(control_memory).
+   dependent: assign(max_mem, 12000).
+   dependent: assign(pick_given_ratio, 4).
+   dependent: assign(stats_level, 1).
+   dependent: assign(max_seconds, 10800).
+
+formula_list(sos).
+-(all x y (EQ(x,y)<->EQ(y,x))).
+end_of_list.
+
+-------> sos clausifies to:
+
+list(sos).
+0 [] EQ($c2,$c1)|EQ($c1,$c2).
+0 [] -EQ($c2,$c1)| -EQ($c1,$c2).
+end_of_list.
+WARNING: Sos list not accepted in auto1 mode:
+         sos clauses are being moved to usable list.
+
+SCAN INPUT: prop=0, horn=0, equality=1, symmetry=0, max_lits=7.
+
+This ia a non-Horn set with equality.  The strategy will be
+Knuth-Bendix, ordered hyper_res, factoring, and unit
+deletion, with positive clauses in sos and nonpositive
+clauses in usable.
+
+   dependent: set(knuth_bendix).
+   dependent: set(anl_eq).
+   dependent: set(para_from).
+   dependent: set(para_into).
+   dependent: clear(para_from_right).
+   dependent: clear(para_into_right).
+   dependent: set(para_from_vars).
+   dependent: set(eq_units_both_ways).
+   dependent: set(dynamic_demod_all).
+   dependent: set(dynamic_demod).
+   dependent: set(order_eq).
+   dependent: set(back_demod).
+   dependent: set(lrpo).
+   dependent: set(hyper_res).
+   dependent: set(unit_deletion).
+   dependent: set(factor).
+
+------------> process usable:
+WARNING, cl_integrate gets clause with ID: 1 [] -PO(x,y)|$f1(x,y)<=x.
+** KEPT (pick-wt=8): 1 [] -PO(x,y)|$f1(x,y)<=x.
+WARNING, cl_integrate gets clause with ID: 2 [] -PO(x,y)|$f1(x,y)<=y.
+** KEPT (pick-wt=8): 2 [] -PO(x,y)|$f1(x,y)<=y.
+WARNING, cl_integrate gets clause with ID: 3 [] -PO(x,y)|$f2(x,y)<=x.
+** KEPT (pick-wt=8): 3 [] -PO(x,y)|$f2(x,y)<=x.
+WARNING, cl_integrate gets clause with ID: 4 [] -PO(x,y)| -($f2(x,y)<=y).
+** KEPT (pick-wt=8): 4 [] -PO(x,y)| -($f2(x,y)<=y).
+WARNING, cl_integrate gets clause with ID: 5 [] -PO(x,y)| -($f3(x,y)<=x).
+** KEPT (pick-wt=8): 5 [] -PO(x,y)| -($f3(x,y)<=x).
+WARNING, cl_integrate gets clause with ID: 6 [] -PO(x,y)|$f3(x,y)<=y.
+** KEPT (pick-wt=8): 6 [] -PO(x,y)|$f3(x,y)<=y.
+WARNING, cl_integrate gets clause with ID: 7 [] PO(x,y)| -(z<=x)| -(z<=y)| -(u<=x)|u<=y|v<=x| -(v<=y).
+** KEPT (pick-wt=21): 7 [] PO(x,y)| -(z<=x)| -(z<=y)| -(u<=x)|u<=y|v<=x| -(v<=y).
+WARNING, cl_integrate gets clause with ID: 8 [] -DR(x,y)| -(z<=x)| -(z<=y).
+** KEPT (pick-wt=9): 8 [] -DR(x,y)| -(z<=x)| -(z<=y).
+WARNING, cl_integrate gets clause with ID: 11 [] -EQ(x,y)|x=y.
+** KEPT (pick-wt=6): 11 [] -EQ(x,y)|x=y.
+WARNING, cl_integrate gets clause with ID: 12 [] EQ(x,y)|x!=y.
+** KEPT (pick-wt=6): 12 [] EQ(x,y)|x!=y.
+WARNING, cl_integrate gets clause with ID: 13 [] -PP(x,y)| -(z<=x)|z<=y.
+** KEPT (pick-wt=9): 13 [] -PP(x,y)| -(z<=x)|z<=y.
+WARNING, cl_integrate gets clause with ID: 14 [] -PP(x,y)| -($f5(x,y)<=x).
+** KEPT (pick-wt=8): 14 [] -PP(x,y)| -($f5(x,y)<=x).
+WARNING, cl_integrate gets clause with ID: 15 [] -PP(x,y)|$f5(x,y)<=y.
+** KEPT (pick-wt=8): 15 [] -PP(x,y)|$f5(x,y)<=y.
+WARNING, cl_integrate gets clause with ID: 16 [] PP(x,y)|$f6(x,y)<=x|z<=x| -(z<=y).
+** KEPT (pick-wt=14): 16 [] PP(x,y)|$f6(x,y)<=x|z<=x| -(z<=y).
+WARNING, cl_integrate gets clause with ID: 17 [] PP(x,y)| -($f6(x,y)<=y)|z<=x| -(z<=y).
+** KEPT (pick-wt=14): 17 [] PP(x,y)| -($f6(x,y)<=y)|z<=x| -(z<=y).
+WARNING, cl_integrate gets clause with ID: 18 [] -PPi(x,y)|PP(y,x).
+** KEPT (pick-wt=6): 18 [] -PPi(x,y)|PP(y,x).
+WARNING, cl_integrate gets clause with ID: 19 [] PPi(x,y)| -PP(y,x).
+** KEPT (pick-wt=6): 19 [] PPi(x,y)| -PP(y,x).
+WARNING, cl_integrate gets clause with ID: 21 [] -(x<=y)| -(y<=x)|x=y.
+** KEPT (pick-wt=9): 21 [] -(x<=y)| -(y<=x)|x=y.
+WARNING, cl_integrate gets clause with ID: 22 [] -(x<=y)| -(y<=z)|x<=z.
+** KEPT (pick-wt=9): 22 [] -(x<=y)| -(y<=z)|x<=z.
+** KEPT (pick-wt=3): 24 [copy,23,factor_simp] -EQ($c2,$c1).
+
+------------> process sos:
+WARNING, cl_integrate gets clause with ID: 9 [] DR(x,y)|$f4(x,y)<=x.
+** KEPT (pick-wt=8): 9 [] DR(x,y)|$f4(x,y)<=x.
+WARNING, cl_integrate gets clause with ID: 10 [] DR(x,y)|$f4(x,y)<=y.
+** KEPT (pick-wt=8): 10 [] DR(x,y)|$f4(x,y)<=y.
+WARNING, cl_integrate gets clause with ID: 20 [] x<=x.
+** KEPT (pick-wt=3): 20 [] x<=x.
+** KEPT (pick-wt=0): 29 [copy,28,unit_del,24,24] $F.
+
+-----> EMPTY CLAUSE at   0.00 sec ----> 29 [copy,28,unit_del,24,24] $F.
+
+Length of proof is 1.  Level of proof is 1.
+
+---------------- PROOF ----------------
+
+23 [] -EQ($c2,$c1)| -EQ($c1,$c2).
+24 [copy,23,factor_simp] -EQ($c2,$c1).
+28 [] EQ($c2,$c1)|EQ($c1,$c2).
+29 [copy,28,unit_del,24,24] $F.
+
+------------ end of proof -------------
+
+
+Search stopped by max_proofs option.
+
+============ end of search ============
+
+-------------- statistics -------------
+clauses given                  0
+clauses generated             12
+clauses kept                  26
+clauses forward subsumed       1
+clauses back subsumed          0
+Kbytes malloced              976
+
+----------- times (seconds) -----------
+user CPU time          0.00          (0 hr, 0 min, 0 sec)
+system CPU time        0.00          (0 hr, 0 min, 0 sec)
+wall-clock time        0             (0 hr, 0 min, 0 sec)
+
+That finishes the proof of the theorem.
+
+Process 31522 finished Sun Aug 28 15:46:20 2022

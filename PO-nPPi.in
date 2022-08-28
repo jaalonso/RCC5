@@ -1,0 +1,28 @@
+include("Definiciones.in").
+
+set(auto).
+
+formula_list(sos).
+-(all x y (PO(x,y) -> -PPi(x,y))).
+end_of_list.
+
+% Demostración
+% ============
+
+% ---------------- PROOF ----------------
+%
+% 5 [] -PO(x,y)| -($f3(x,y)<=x).
+% 6 [] -PO(x,y)|$f3(x,y)<=y.
+% 13 [] -PP(x,y)| -(z<=x)|z<=y.
+% 18 [] -PPi(x,y)|PP(y,x).
+% 20 [] x<=x.
+% 22 [] -(x<=y)| -(y<=z)|x<=z.
+% 26 [] PO($c2,$c1).
+% 27 [] PPi($c2,$c1).
+% 34 [hyper,26,6] $f3($c2,$c1)<=$c1.
+% 44 [hyper,27,18] PP($c1,$c2).
+% 56 [hyper,44,13,20] $c1<=$c2.
+% 91 [hyper,34,22,56] $f3($c2,$c1)<=$c2.
+% 283 [hyper,91,5,26] $F.
+%
+% ------------ end of proof -------------

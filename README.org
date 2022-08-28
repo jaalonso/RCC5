@@ -1,0 +1,36 @@
+#+TITLE: RCC5
+
+El contenido es
++ [[./Definiciones.in][Definiciones de RCC5]]
+
++ [[./DR-nEQ.in][DR -> -EQ]]
++ [[./DR-nPO.in][DR -> -PO]]
++ [[./DR-nPP.in][DR -> -PP]].
++ [[./DR-nPPi.in][DR -> -PPi]]
++ [[./DR-simetrica.in][DR es simétrica]]
+
++ [[./EQ-nDR.in][EQ -> -DR]].
++ [[./EQ-nPO.in][EQ -> -PO]]
++ [[./EQ-nPP.in][EQ -> -PP]]
++ [[./EQ-nPPi.in][EQ -> -PPi]]
++ [[./EQ-simetrica.in][EQ es simétrica]]
+
++ [[./PO-nDR.in][PO -> -DR]]
++ [[./PO-nEQ.in][PO -> -EQ]]
++ [[./PO-nPP.in][PO -> -PP]]
++ [[./PO-nPPi.in][PO -> -PPi]]
++ [[./PO-simetrica.in][PO es simétrica]].
+
++ [[./PP-nDR.in][PP -> -DR]]
++ [[./PP-nEQ.in][PP -> -EQ]]
++ [[./PP-nPO.in][PP -> -PO]]
++ [[./PP-nPPi.in][PP -> -PPi]]
++ [[./PP-asimetrica.in][PP es asimétrica]]
+
++ [[./PPi-nDR.in][PPi -> -DR]]
++ [[./PPi-nEQ.in][PPi -> -EQ]]
++ [[./PPi-nPO.in][PPi -> -PO]]
++ [[./PPi-nPP.in][PPi -> -PP]]
++ [[./PPi-asimetrica.in][PPi es asimétrica]]
+
++ [[./Exhaustiva.in][DR v EQ v PO v PP v PPi]]

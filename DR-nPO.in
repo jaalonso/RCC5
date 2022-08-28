@@ -1,0 +1,23 @@
+include("Definiciones.in").
+
+set(auto).
+
+formula_list(sos).
+-(all x y (DR(x,y) -> -PO(x,y))).
+end_of_list.
+
+% Demostración
+% ============
+
+% ---------------- PROOF ----------------
+%
+% 1 [] -PO(x,y)|$f1(x,y)<=x.
+% 2 [] -PO(x,y)|$f1(x,y)<=y.
+% 8 [] -DR(x,y)| -(z<=x)| -(z<=y).
+% 26 [] DR($c2,$c1).
+% 27 [] PO($c2,$c1).
+% 42 [hyper,27,2] $f1($c2,$c1)<=$c1.
+% 43 [hyper,27,1] $f1($c2,$c1)<=$c2.
+% 129 [hyper,43,8,26,42] $F.
+%
+% ------------ end of proof -------------

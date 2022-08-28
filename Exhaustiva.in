@@ -1,0 +1,52 @@
+include("Definiciones.in").
+
+assign(max_literals, 3).
+assign(max_weight, 15).
+set(auto2).
+
+list(sos).
+-PO(a,b).
+-DR(a,b).
+-EQ(a,b).
+-PP(a,b).
+-PPi(a,b).
+end_of_list.
+
+% Demostración
+% ============
+
+% ---------------- PROOF ----------------
+%
+% 7 [] PO(x,y)| -(z<=x)| -(z<=y)| -(u<=x)|u<=y|v<=x| -(v<=y).
+% 9 [] DR(x,y)|$f4(x,y)<=x.
+% 10 [] DR(x,y)|$f4(x,y)<=y.
+% 12 [] EQ(x,y)|x!=y.
+% 16 [] PP(x,y)|$f6(x,y)<=x|z<=x| -(z<=y).
+% 17 [] PP(x,y)| -($f6(x,y)<=y)|z<=x| -(z<=y).
+% 19 [] PPi(x,y)| -PP(y,x).
+% 20 [] x<=x.
+% 21 [] -(x<=y)| -(y<=x)|x=y.
+% 22 [] -(x<=y)| -(y<=z)|x<=z.
+% 26 [] -PO(a,b).
+% 27 [] -DR(a,b).
+% 28 [] -EQ(a,b).
+% 29 [copy,28,flip.1] -EQ(b,a).
+% 30 [] -PP(a,b).
+% 31 [] -PPi(a,b).
+% 32 [ur,29,12] b!=a.
+% 34 [ur,31,19] -PP(b,a).
+% 35 [hyper,9,27] $f4(a,b)<=a.
+% 38 [hyper,20,16] PP(x,y)|$f6(x,y)<=x|y<=x.
+% 40 [hyper,10,27] $f4(a,b)<=b.
+% 69 [hyper,40,7,35,20,20,unit_del,26] a<=b|b<=a.
+% 73 [hyper,38,34] $f6(b,a)<=b|a<=b.
+% 74 [hyper,38,30] $f6(a,b)<=a|b<=a.
+% 366 [hyper,73,22,69,factor_simp] a<=b|$f6(b,a)<=a.
+% 428 [hyper,366,17,20,unit_del,34,factor_simp] a<=b.
+% 435 [hyper,428,21,74,unit_del,32] $f6(a,b)<=a.
+% 439 [ur,428,21,32] -(b<=a).
+% 453 [ur,439,17,30,20] -($f6(a,b)<=b).
+% 468 [hyper,435,22,428] $f6(a,b)<=b.
+% 469 [binary,468.1,453.1] $F.
+%
+% ------------ end of proof -------------

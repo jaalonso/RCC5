@@ -1,0 +1,22 @@
+include("Definiciones.in").
+
+set(auto).
+
+formula_list(sos).
+-(all x y (EQ(x,y) -> -PP(x,y))).
+end_of_list.
+
+% Demostración
+% ============
+
+% ---------------- PROOF ----------------
+%
+% 14 [] -PP(x,y)| -($f5(x,y)<=x).
+% 15 [] -PP(x,y)|$f5(x,y)<=y.
+% 27,26 [] EQ($c2,$c1).
+% 28 [] PP($c2,$c1).
+% 29 [copy,28,demod,27] PP($c1,$c1).
+% 41 [hyper,29,15] $f5($c1,$c1)<=$c1.
+% 69 [hyper,41,14,29] $F.
+%
+% ------------ end of proof -------------

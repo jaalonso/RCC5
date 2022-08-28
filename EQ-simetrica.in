@@ -1,0 +1,19 @@
+include("Definiciones.in").
+
+set(auto).
+
+formula_list(sos).
+-(all x y (EQ(x,y) <-> EQ(y,x))).
+end_of_list.
+
+% Demostración
+% ============
+
+% ---------------- PROOF ----------------
+%
+% 13 [] -EQ($c2,$c1)| -EQ($c1,$c2).
+% 14 [copy,13,factor_simp] -EQ($c2,$c1).
+% 16 [] EQ($c2,$c1)|EQ($c1,$c2).
+% 17 [copy,16,unit_del,14,14] $F.
+%
+% ------------ end of proof -------------

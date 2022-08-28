@@ -1,0 +1,87 @@
+include("Definiciones.in").
+
+set(auto).
+
+formula_list(sos).
+-(all x y (PO(x,y) <-> PO(y,x))).
+end_of_list.
+
+% Demostración
+% ============
+
+% ---------------- PROOF ----------------
+%
+% 1 [] -PO(x,y)|$f1(x,y)<=x.
+% 2 [] -PO(x,y)|$f1(x,y)<=y.
+% 3 [] -PO(x,y)|$f2(x,y)<=x.
+% 4 [] -PO(x,y)| -($f2(x,y)<=y).
+% 5 [] -PO(x,y)| -($f3(x,y)<=x).
+% 6 [] -PO(x,y)|$f3(x,y)<=y.
+% 7 [] PO(x,y)| -(z<=x)| -(z<=y)| -(u<=x)|u<=y|v<=x| -(v<=y).
+% 8 [] PO($c2,$c1)|PO($c1,$c2).
+% 9 [] -PO($c2,$c1)| -PO($c1,$c2).
+% 10 [hyper,8,6] PO($c1,$c2)|$f3($c2,$c1)<=$c1.
+% 11 [hyper,8,3] PO($c1,$c2)|$f2($c2,$c1)<=$c2.
+% 12 [hyper,8,2] PO($c1,$c2)|$f1($c2,$c1)<=$c1.
+% 13 [hyper,8,1] PO($c1,$c2)|$f1($c2,$c1)<=$c2.
+% 14 [hyper,8,6] PO($c2,$c1)|$f3($c1,$c2)<=$c2.
+% 15 [hyper,8,3] PO($c2,$c1)|$f2($c1,$c2)<=$c1.
+% 16 [hyper,8,2] PO($c2,$c1)|$f1($c1,$c2)<=$c2.
+% 17 [hyper,8,1] PO($c2,$c1)|$f1($c1,$c2)<=$c1.
+% 18 [hyper,10,6] $f3($c2,$c1)<=$c1|$f3($c1,$c2)<=$c2.
+% 19 [hyper,10,3] $f3($c2,$c1)<=$c1|$f2($c1,$c2)<=$c1.
+% 20 [hyper,10,2] $f3($c2,$c1)<=$c1|$f1($c1,$c2)<=$c2.
+% 21 [hyper,10,1] $f3($c2,$c1)<=$c1|$f1($c1,$c2)<=$c1.
+% 22 [hyper,11,6] $f2($c2,$c1)<=$c2|$f3($c1,$c2)<=$c2.
+% 23 [hyper,11,3] $f2($c2,$c1)<=$c2|$f2($c1,$c2)<=$c1.
+% 24 [hyper,11,2] $f2($c2,$c1)<=$c2|$f1($c1,$c2)<=$c2.
+% 25 [hyper,11,1] $f2($c2,$c1)<=$c2|$f1($c1,$c2)<=$c1.
+% 26 [hyper,12,6] $f1($c2,$c1)<=$c1|$f3($c1,$c2)<=$c2.
+% 27 [hyper,12,3] $f1($c2,$c1)<=$c1|$f2($c1,$c2)<=$c1.
+% 28 [hyper,12,2] $f1($c2,$c1)<=$c1|$f1($c1,$c2)<=$c2.
+% 29 [hyper,12,1] $f1($c2,$c1)<=$c1|$f1($c1,$c2)<=$c1.
+% 30 [hyper,13,6] $f1($c2,$c1)<=$c2|$f3($c1,$c2)<=$c2.
+% 32 [hyper,13,2] $f1($c2,$c1)<=$c2|$f1($c1,$c2)<=$c2.
+% 33 [hyper,13,1] $f1($c2,$c1)<=$c2|$f1($c1,$c2)<=$c1.
+% 34 [hyper,21,7,20,18,19,factor_simp,factor_simp,factor_simp] $f3($c2,$c1)<=$c1|PO($c2,$c1)|$f3($c1,$c2)<=$c1|$f2($c1,$c2)<=$c2.
+% 35 [hyper,25,7,24,22,23,factor_simp,factor_simp,factor_simp] $f2($c2,$c1)<=$c2|PO($c2,$c1)|$f3($c1,$c2)<=$c1|$f2($c1,$c2)<=$c2.
+% 36 [hyper,29,7,28,26,27,factor_simp,factor_simp,factor_simp] $f1($c2,$c1)<=$c1|PO($c2,$c1)|$f3($c1,$c2)<=$c1|$f2($c1,$c2)<=$c2.
+% 40 [hyper,30,7,26,18,22,factor_simp,factor_simp,factor_simp] $f3($c1,$c2)<=$c2|PO($c1,$c2)|$f3($c2,$c1)<=$c2|$f2($c2,$c1)<=$c1.
+% 51 [hyper,34,9,10,factor_simp] $f3($c2,$c1)<=$c1|$f3($c1,$c2)<=$c1|$f2($c1,$c2)<=$c2.
+% 55 [hyper,51,5,10,factor_simp] $f3($c2,$c1)<=$c1|$f2($c1,$c2)<=$c2.
+% 63 [hyper,55,4,10,factor_simp] $f3($c2,$c1)<=$c1.
+% 69 [hyper,35,9,11,factor_simp] $f2($c2,$c1)<=$c2|$f3($c1,$c2)<=$c1|$f2($c1,$c2)<=$c2.
+% 72 [hyper,69,5,11,factor_simp] $f2($c2,$c1)<=$c2|$f2($c1,$c2)<=$c2.
+% 82 [hyper,72,4,11,factor_simp] $f2($c2,$c1)<=$c2.
+% 86 [hyper,36,9,12,factor_simp] $f1($c2,$c1)<=$c1|$f3($c1,$c2)<=$c1|$f2($c1,$c2)<=$c2.
+% 90 [hyper,40,9,14,factor_simp] $f3($c1,$c2)<=$c2|$f3($c2,$c1)<=$c2|$f2($c2,$c1)<=$c1.
+% 92 [hyper,86,5,12,factor_simp] $f1($c2,$c1)<=$c1|$f2($c1,$c2)<=$c2.
+% 96 [hyper,92,4,12,factor_simp] $f1($c2,$c1)<=$c1.
+% 97 [hyper,96,7,32,33,82,factor_simp,factor_simp] PO($c2,$c1)|$f2($c2,$c1)<=$c1|$f1($c2,$c1)<=$c2.
+% 98 [hyper,96,7,32,33,30,factor_simp,factor_simp,factor_simp] PO($c2,$c1)|$f3($c1,$c2)<=$c1|$f1($c2,$c1)<=$c2.
+% 99 [hyper,97,9,13,factor_simp] $f2($c2,$c1)<=$c1|$f1($c2,$c1)<=$c2.
+% 103 [hyper,99,7,96,63,82,factor_simp] $f2($c2,$c1)<=$c1|PO($c1,$c2)|$f3($c2,$c1)<=$c2.
+% 104 [hyper,99,7,96,82,63,factor_simp] $f2($c2,$c1)<=$c1|PO($c2,$c1)|$f3($c2,$c1)<=$c2.
+% 105 [hyper,98,9,13,factor_simp] $f3($c1,$c2)<=$c1|$f1($c2,$c1)<=$c2.
+% 106 [hyper,105,5,13,factor_simp] $f1($c2,$c1)<=$c2.
+% 110 [hyper,90,5,14,factor_simp] $f3($c1,$c2)<=$c2|$f2($c2,$c1)<=$c1.
+% 118 [hyper,110,4,14,factor_simp] $f3($c1,$c2)<=$c2.
+% 120 [hyper,118,7,106,96,63] PO($c2,$c1)|$f3($c1,$c2)<=$c1|$f3($c2,$c1)<=$c2.
+% 123 [hyper,104,9,103,factor_simp,factor_simp] $f2($c2,$c1)<=$c1|$f3($c2,$c1)<=$c2.
+% 127 [hyper,123,4,17] $f3($c2,$c1)<=$c2|$f1($c1,$c2)<=$c1.
+% 128 [hyper,123,4,16] $f3($c2,$c1)<=$c2|$f1($c1,$c2)<=$c2.
+% 129 [hyper,123,4,15] $f3($c2,$c1)<=$c2|$f2($c1,$c2)<=$c1.
+% 130 [hyper,123,4,8] $f3($c2,$c1)<=$c2|PO($c1,$c2).
+% 135 [hyper,127,5,17,factor_simp] $f1($c1,$c2)<=$c1.
+% 136 [hyper,120,9,130,factor_simp] $f3($c1,$c2)<=$c1|$f3($c2,$c1)<=$c2.
+% 138 [hyper,128,5,16,factor_simp] $f1($c1,$c2)<=$c2.
+% 139 [hyper,129,5,15,factor_simp] $f2($c1,$c2)<=$c1.
+% 140 [hyper,136,5,130,factor_simp] $f3($c2,$c1)<=$c2.
+% 142 [hyper,139,7,138,135,118] PO($c2,$c1)|$f3($c1,$c2)<=$c1|$f2($c1,$c2)<=$c2.
+% 144 [hyper,140,5,8] PO($c1,$c2).
+% 145 [ur,140,5] -PO($c2,$c1).
+% 146 [ur,144,5] -($f3($c1,$c2)<=$c1).
+% 147 [ur,144,4] -($f2($c1,$c2)<=$c2).
+% 148 [hyper,142,145,unit_del,146,147] $F.
+%
+% ------------ end of proof -------------

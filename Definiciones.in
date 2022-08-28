@@ -1,0 +1,25 @@
+formula_list(usable).
+% PO(x,y) se verifica si x e y están parcialmente solapadas.
+all x y (PO(x,y) <-> (exists z (z <= x & z <= y)) &
+                     (exists z (z <= x & -(z <= y))) &
+                     (exists z (-(z <=  x) & z <= y))).
+
+% DR(x,y) se verifica si x e y son disjuntas.
+all x y (DR(x,y) <-> -(exists z (z <= x & z <= y))).
+
+% EQ(x,y) se verifica si x e y son iguales.
+all x y (EQ(x,y) <-> (x = y)).
+
+% PP(x,y) se verifica si x es parte propia de y.
+all x y (PP(x,y) <-> (all z (z <= x -> z <= y)) & (exists z (-(z <= x) & z <= y))).
+
+% PPi(x,y) se verifica si y es parte propia de x.
+all x y (PPi(x,y) <-> PP(y,x)).
+end_of_list.
+
+% Propiedades de orden
+formula_list(usable).
+all x (x <= x).
+all x y (x <= y & y <= x -> x = y).
+all x y z (x <= y & y <=z -> x <= z).
+end_of_list.

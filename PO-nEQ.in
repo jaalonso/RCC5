@@ -1,0 +1,22 @@
+include("Definiciones.in").
+
+set(auto).
+
+formula_list(sos).
+-(all x y (PO(x,y) -> -EQ(x,y))).
+end_of_list.
+
+% Demostración
+% ============
+
+% ---------------- PROOF ----------------
+%
+% 5 [] -PO(x,y)| -($f3(x,y)<=x).
+% 6 [] -PO(x,y)|$f3(x,y)<=y.
+% 26 [] PO($c2,$c1).
+% 28,27 [] EQ($c2,$c1).
+% 29 [back_demod,26,demod,28] PO($c1,$c1).
+% 40 [hyper,29,6] $f3($c1,$c1)<=$c1.
+% 68 [hyper,40,5,29] $F.
+%
+% ------------ end of proof -------------

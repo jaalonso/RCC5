@@ -1,0 +1,22 @@
+include("Definiciones.in").
+
+set(auto).
+
+formula_list(sos).
+-(all x y (PP(x,y) -> -DR(x,y))).
+end_of_list.
+
+% Demostración
+% ============
+
+% ---------------- PROOF ----------------
+%
+% 8 [] -DR(x,y)| -(z<=x)| -(z<=y).
+% 13 [] -PP(x,y)| -(z<=x)|z<=y.
+% 20 [] x<=x.
+% 26 [] PP($c2,$c1).
+% 27 [] DR($c2,$c1).
+% 36 [hyper,26,13,20] $c2<=$c1.
+% 60 [hyper,36,8,27,20] $F.
+%
+% ------------ end of proof -------------

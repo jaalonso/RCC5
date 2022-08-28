@@ -3,7 +3,7 @@ include("Definiciones.in").
 set(auto).
 
 formula_list(sos).
--(all x y (EQ(x,y) <-> EQ(y,x))).
+-(all x y (EQ(x,y) -> EQ(y,x))).
 end_of_list.
 
 % Demostración
@@ -11,9 +11,9 @@ end_of_list.
 
 % ---------------- PROOF ----------------
 %
-% 13 [] -EQ($c2,$c1)| -EQ($c1,$c2).
-% 14 [copy,13,factor_simp] -EQ($c2,$c1).
-% 16 [] EQ($c2,$c1)|EQ($c1,$c2).
-% 17 [copy,16,unit_del,14,14] $F.
+% 23 [] -EQ($c1,$c2).
+% 24 [copy,23,flip.1] -EQ($c2,$c1).
+% 28 [] EQ($c2,$c1).
+% 30 [binary,28.1,24.1] $F.
 %
 % ------------ end of proof -------------

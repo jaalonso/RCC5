@@ -3,7 +3,7 @@ include("Definiciones.in").
 set(auto).
 
 formula_list(sos).
--(all x y (DR(x,y) <-> DR(y,x))).
+-(all x y (DR(x,y) -> DR(y,x))).
 end_of_list.
 
 % Demostración
@@ -14,16 +14,10 @@ end_of_list.
 % 8 [] -DR(x,y)| -(z<=x)| -(z<=y).
 % 9 [] DR(x,y)|$f4(x,y)<=x.
 % 10 [] DR(x,y)|$f4(x,y)<=y.
-% 11 [] -DR($c2,$c1)| -DR($c1,$c2).
-% 13 [] DR($c2,$c1)|DR($c1,$c2).
-% 14 [hyper,9,11,9] $f4($c1,$c2)<=$c1|$f4($c2,$c1)<=$c2.
-% 15 [hyper,10,11,10] $f4($c1,$c2)<=$c2|$f4($c2,$c1)<=$c1.
-% 16 [hyper,10,11,9] $f4($c1,$c2)<=$c2|$f4($c2,$c1)<=$c2.
-% 17 [hyper,10,11,9] $f4($c2,$c1)<=$c1|$f4($c1,$c2)<=$c1.
-% 28 [hyper,16,8,9,14,factor_simp,factor_simp] $f4($c2,$c1)<=$c2.
-% 31 [hyper,16,8,10,15,factor_simp,factor_simp] $f4($c1,$c2)<=$c2.
-% 35 [hyper,17,8,9,28,factor_simp] $f4($c1,$c2)<=$c1.
-% 40 [hyper,35,8,13,31] DR($c1,$c2).
-% 42 [hyper,40,8,35,31] $F.
+% 23 [] -DR($c1,$c2).
+% 27 [] DR($c2,$c1).
+% 28 [hyper,9,23] $f4($c1,$c2)<=$c1.
+% 42 [hyper,10,23] $f4($c1,$c2)<=$c2.
+% 77 [hyper,42,8,27,28] $F.
 %
 % ------------ end of proof -------------

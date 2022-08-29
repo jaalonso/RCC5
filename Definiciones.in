@@ -1,4 +1,9 @@
 formula_list(usable).
+% C(x,y) se verifica si x e y están conectados-
+all x y (C(x,y) <-> x <= y |
+                    y <= x |
+                    (exists z ((z <= x | x <= z) & C(z,y))).
+
 % PO(x,y) se verifica si x e y están parcialmente solapadas.
 all x y (PO(x,y) <-> (exists z (z <= x & z <= y)) &
                      (exists z (z <= x & -(z <= y))) &

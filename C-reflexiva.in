@@ -1,0 +1,20 @@
+include("Definiciones.in").
+
+set(auto).
+
+formula_list(sos).
+-(all x C(x,x)).
+end_of_list.
+
+% Demostración
+% ============
+
+% ---------------- PROOF ----------------
+%
+% 4 [] C(x,y)| -(y<=x).
+% 26 [] x<=x.
+% 29 [] -C($c1,$c1).
+% 41 [hyper,26,4] C(x,x).
+% 42 [binary,41.1,29.1] $F.
+%
+% ------------ end of proof -------------
